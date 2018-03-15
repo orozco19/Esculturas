@@ -55,7 +55,7 @@ public class RegistroActivity extends AppCompatActivity {
             error = 1;
             Toast toast1 =
                     Toast.makeText(getApplicationContext(),
-                            "Las contraseñas no coinciden.", Toast.LENGTH_LONG);
+                            "Las contraseñas no coinciden.", Toast.LENGTH_SHORT);
 
             toast1.show();
 

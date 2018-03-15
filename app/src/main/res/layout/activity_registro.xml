@@ -51,7 +51,8 @@
         android:layout_marginHorizontal="80dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:hint="@string/repcontrasena"/>
+        android:hint="@string/repcontrasena"
+        android:inputType="textPassword"/>
 
     <Button
         android:onClick="onClick"
@@ -62,7 +63,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:text="@string/REGISTRAR" />
-
-
 
 </RelativeLayout>

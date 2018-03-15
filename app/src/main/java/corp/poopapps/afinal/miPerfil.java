@@ -11,6 +11,7 @@ public class miPerfil extends AppCompatActivity {
 
     TextView usuario, contrasena;
     String user, password;
+   // boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,9 @@ public class miPerfil extends AppCompatActivity {
         if(item.getItemId() == R.id.logout){
             //Toast.makeText(this,"logout",Toast.LENGTH_SHORT).show();
             Intent i = new Intent(miPerfil.this, LogginActivity.class);
+            i.putExtra("usuario", user);
+            i.putExtra("contrasena", password);
+           // i.putExtra("flag", flag);
             startActivity(i);
         }
 

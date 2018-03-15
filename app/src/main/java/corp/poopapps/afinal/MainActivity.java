@@ -9,15 +9,15 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    String usuario,contrasena;
+    String usuario, contrasena;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        usuario = (String)getIntent().getExtras().getString("usuario");
-        contrasena = (String)getIntent().getExtras().getString("contrasena");
+       usuario = (String)getIntent().getExtras().getString("usuario");
+       contrasena = (String)getIntent().getExtras().getString("contrasena");
     }
 
     @Override
@@ -37,9 +37,21 @@ public class MainActivity extends AppCompatActivity {
         }
         if(item.getItemId() == R.id.logout){
             //Toast.makeText(this,"logout",Toast.LENGTH_SHORT).show();
-            finish();
+            Intent i = new Intent(MainActivity.this, LogginActivity.class);
+            i.putExtra("usuario", usuario);
+            i.putExtra("contrasena", contrasena);
+            // i.putExtra("flag", flag);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 }

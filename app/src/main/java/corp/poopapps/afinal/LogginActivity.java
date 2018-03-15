@@ -14,6 +14,8 @@ public class LogginActivity extends AppCompatActivity {
     Button bRegistro;
     String usuario, contrasena;
     public static final int REQUEST_CODE=1;
+    public static boolean flag = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,16 @@ public class LogginActivity extends AppCompatActivity {
         bRegistro = (Button)findViewById(R.id.bRegistrarse);
         eUsuario = (EditText)findViewById(R.id.eUsuario);
         eContrasena = (EditText)findViewById(R.id.eContrasena);
+
+        eUsuario.setText("");
+        eContrasena.setText("");
+
+        if(flag == true) {
+            usuario = (String) getIntent().getExtras().getString("usuario");
+            contrasena = (String) getIntent().getExtras().getString("contrasena");
+        }else{
+            flag = true;
+        }
     }
 
     public void OnClickButton(View view) {
@@ -61,11 +73,19 @@ public class LogginActivity extends AppCompatActivity {
         }else{
             Toast toast1 =
                     Toast.makeText(getApplicationContext(),
-                            "Usuario o contraseña incorrecta.", Toast.LENGTH_LONG);
+                            "Usuario o contraseña incorrecta.", Toast.LENGTH_SHORT);
 
             toast1.show();
             eUsuario.setText("");
             eContrasena.setText("");
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 }
