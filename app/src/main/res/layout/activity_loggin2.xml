@@ -1,67 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#badc58"
     android:orientation="vertical"
-    android:background="@color/white"
     tools:context="corp.poopapps.afinal.LogginActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:src="@mipmap/udea"
-        android:id="@+id/imageView" />
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/logo" />
 
     <EditText
         android:id="@+id/eUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="80dp"
-        android:inputType="textEmailAddress"
+        android:layout_marginTop="10dp"
+        android:background="@color/beige"
+        android:drawableEnd="@mipmap/mail"
         android:gravity="center"
-        android:hint="@string/usuario"/>
+        android:hint="@string/usuario"
+        android:inputType="textEmailAddress"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/eContrasena"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/eUsuario"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="80dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/beige"
+        android:drawableEnd="@mipmap/locked"
         android:gravity="center"
-        android:hint="@string/contrasena"/>
+        android:hint="@string/contrasena"
+        android:inputType="textPassword"
+        android:textStyle="bold" />
 
     <Button
-        android:onClick="ClickIngresar"
         android:id="@+id/bIngreso"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_below="@+id/eContrasena"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:text="@string/INGRESAR" />
+        android:layout_marginTop="10dp"
+        android:background="@color/green"
+        android:onClick="ClickIngresar"
+        android:text="@string/INGRESAR"
+        android:textColor="@color/whitesmoke"
+        android:textStyle="bold" />
 
 
     <Button
-        android:onClick="OnClickButton"
         android:id="@+id/bRegistrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="190dp"
+        android:layout_height="33dp"
         android:layout_below="@+id/bIngreso"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
-        android:text="@string/REGISTRARSE"/>
+        android:layout_marginTop="10dp"
+        android:background="@color/green"
+        android:drawableStart="@mipmap/upbutton"
+        android:onClick="OnClickButton"
+        android:text="@string/REGISTRARSE"
+        android:textColor="@color/whitesmoke"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/bRegistroGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bRegistrarse"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
 
 
 </RelativeLayout>

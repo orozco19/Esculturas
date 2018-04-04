@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="corp.poopapps.afinal.SplashActivity"
-    android:background="@color/forestgreen"
-    android:weightSum="1">
+    android:background="#00695c"
+    android:weightSum="1"
+    tools:context="corp.poopapps.afinal.SplashActivity">
 
 
     <ImageView
-        android:layout_width="270dp"
-        android:layout_height="200dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/whitesmoke"
-        android:padding="1dp"
-        android:src="@mipmap/sembrador" />
+        android:src="@mipmap/logo" />
 
 </RelativeLayout>

@@ -1,67 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#badc58"
     android:orientation="vertical"
-    android:background="@color/white"
     tools:context="corp.poopapps.afinal.RegistroActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:src="@mipmap/udea"
-        android:id="@+id/imageView"/>
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/logo" />
 
     <EditText
         android:id="@+id/eCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/beige"
+        android:drawableEnd="@mipmap/mail"
         android:gravity="center"
+        android:hint="@string/usuario"
         android:inputType="textEmailAddress"
-        android:hint="@string/usuario"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/eContrasena"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/eCorreo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="80dp"
-        android:inputType="textPassword"
+        android:layout_marginTop="5dp"
+        android:background="@color/beige"
+        android:drawableEnd="@mipmap/locked"
         android:gravity="center"
-        android:hint="@string/contrasena"/>
+        android:hint="@string/contrasena"
+        android:inputType="textPassword"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/eContrasena2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/eContrasena"
         android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/beige"
+        android:drawableEnd="@mipmap/locked"
         android:gravity="center"
         android:hint="@string/repcontrasena"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:textStyle="bold" />
 
     <Button
-        android:onClick="onClick"
         android:id="@+id/bIngreso"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_below="@+id/eContrasena2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:text="@string/REGISTRAR" />
+        android:layout_marginTop="10dp"
+        android:background="@color/green"
+        android:onClick="onClick"
+        android:text="@string/REGISTRAR"
+        android:textColor="@color/whitesmoke"
+        android:textStyle="bold" />
 
 </RelativeLayout>

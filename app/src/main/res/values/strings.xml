@@ -1,16 +1,17 @@
 <resources>
-    <string name="app_name">Udestatuas</string>
+    <string name="app_name">Project</string>
     <string name="emailhint">email</string>
     <string name="contrasenahint">contraseña</string>
-    <string name="Login">LOGIN</string>
-    <string name="usuario">usuario</string>
+    <string name="Login">Login</string>
+    <string name="usuario">correo electrónico</string>
     <string name="contrasena">contraseña</string>
     <string name="INGRESAR">INGRESAR</string>
-    <string name="REGISTRARSE">RESGISTRARSE</string>
+    <string name="REGISTRARSE">Registra tu correo</string>
     <string name="repcontrasena">repetir contraseña</string>
     <string name="REGISTRAR">REGISTRAR</string>
     <string name="correo">email</string>
-    <string name="miPerfil">miPerfil</string>
-    <string name="CerrarSesion">Cerrar Sesión</string>
+    <string name="miPerfil">Mi perfil</string>
+    <string name="CerrarSesion">Cerrar sesión</string>
     <string name="Principal">Principal</string>
+    <string name="Registro">Registro</string>
 </resources>
