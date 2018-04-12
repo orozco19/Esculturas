@@ -104,7 +104,7 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
                 @Override
                 public void onResult(@NonNull Status status) {
                     if (status.isSuccess()){
-                        Toast.makeText(miPerfil.this, "Sesión finalizada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(miPerfil.this, "Sesión finalizada.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
