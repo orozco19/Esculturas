@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -90,44 +92,42 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.perfilmenu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.Principal){
-            Intent i = new Intent(miPerfil.this, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-        }
-        if(item.getItemId() == R.id.logout){
-            Intent i = new Intent(miPerfil.this, LogginActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-            firebaseAuth.signOut();
-            googleLogOut();
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
 
     private void googleLogOut() {
-        Auth.GoogleSignInApi.revokeAccess(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                if (status.isSuccess()){
-                    Toast.makeText(miPerfil.this, "Sesión de Google finalizada", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(miPerfil.this, "No inicio sesión en Google", Toast.LENGTH_SHORT).show();
+        if(Auth.GoogleSignInApi != null){
+            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+                @Override
+                public void onResult(@NonNull Status status) {
+                    if (status.isSuccess()){
+                        Toast.makeText(miPerfil.this, "Sesión finalizada", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
+        if(LoginManager.getInstance() != null){
+            LoginManager.getInstance().logOut();
+        }
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    public void ClickEditarPerfil(View view) {
+        Toast.makeText(miPerfil.this, "EDITAR PERFIL", Toast.LENGTH_SHORT).show();
+    }
+
+    public void ClickCerrarSesion(View view) {
+            Intent i = new Intent(miPerfil.this, LogginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            firebaseAuth.signOut();
+            googleLogOut();
     }
 }

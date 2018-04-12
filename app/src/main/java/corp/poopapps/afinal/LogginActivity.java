@@ -15,6 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -26,6 +33,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -41,6 +49,8 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
 
     private GoogleApiClient googleApiClient;
     private SignInButton bRegistroGoogle;
+    private LoginButton btnSignInFacebook;
+    private CallbackManager callbackManager;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -51,6 +61,11 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loggin2);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+
+        btnSignInFacebook = findViewById(R.id.btnSignInFacebook);
 
         bRegistro = (Button)findViewById(R.id.bRegistrarse);
         eUsuario = (EditText)findViewById(R.id.eUsuario);
@@ -79,7 +94,29 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
             }
         });
 
+        btnSignInFacebook.setReadPermissions("email", "public_profile");
+
+        btnSignInFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d("Login con Facebook", "Login exitoso");
+                signInFacebook(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("Login con Facebook", "Login Cancelado");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("Login con Facebook", "Login Error");
+                error.printStackTrace();
+            }
+        });
+
         inicializar();
+        getHashes();
     }
 
     private void getHashes(){
@@ -99,12 +136,29 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
+    public void signInFacebook(AccessToken accessToken){
+        AuthCredential authCredential = FacebookAuthProvider.getCredential(accessToken.getToken());
+
+        firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    goMainScreen();
+                }else {
+                        Toast.makeText(LogginActivity.this, "Autenticacion con Facebook no exitosa", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == SIGN_IN){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
+        }else {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 

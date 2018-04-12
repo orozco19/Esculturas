@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#badc58"
     tools:context="corp.poopapps.afinal.miPerfil">
 
     <ImageView
@@ -39,5 +38,33 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="#004d40"/>
+
+    <Button
+        android:onClick="ClickEditarPerfil"
+        android:id="@+id/bEditarPerfil"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/perfilusuario"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:background="@color/green"
+        android:gravity="center"
+        android:text="@string/editarperfil"
+        android:textColor="@color/whitesmoke"
+        android:textStyle="bold" />
+
+    <Button
+        android:onClick="ClickCerrarSesion"
+        android:id="@+id/logout"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@color/green"
+        android:gravity="center"
+        android:text="@string/CerrarSesion"
+        android:textColor="@color/whitesmoke"
+        android:textStyle="bold" />
 
 </RelativeLayout>

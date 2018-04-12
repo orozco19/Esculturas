@@ -4,18 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#badc58"
-    android:orientation="vertical"
     tools:context="corp.poopapps.afinal.RegistroActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:src="@mipmap/logo" />
 
     <EditText
         android:id="@+id/eCorreo"
@@ -23,9 +12,9 @@
         android:layout_height="32dp"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="170dp"
         android:background="@color/beige"
-        android:drawableEnd="@mipmap/mail"
+        android:drawableEnd="@mipmap/email"
         android:gravity="center"
         android:hint="@string/usuario"
         android:inputType="textEmailAddress"
@@ -39,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:background="@color/beige"
-        android:drawableEnd="@mipmap/locked"
+        android:drawableEnd="@mipmap/password"
         android:gravity="center"
         android:hint="@string/contrasena"
         android:inputType="textPassword"
@@ -53,7 +42,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:background="@color/beige"
-        android:drawableEnd="@mipmap/locked"
+        android:drawableEnd="@mipmap/password"
         android:gravity="center"
         android:hint="@string/repcontrasena"
         android:inputType="textPassword"

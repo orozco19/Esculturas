@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Buscaritem"
+        android:icon="@mipmap/searchicon"
+        app:showAsAction="ifRoom"
+        android:title="@string/Buscar"
+        />
 
     <item
         android:id="@+id/miPerfil"
+        android:icon="@mipmap/user"
+        app:showAsAction="ifRoom"
         android:title="@string/miPerfil"
-        ></item>
+       />
 
-    <item
-        android:id="@+id/logout"
-        android:title="@string/CerrarSesion"></item>
+
 
 </menu>

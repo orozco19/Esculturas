@@ -6,7 +6,7 @@
     <string name="usuario">correo electrónico</string>
     <string name="contrasena">contraseña</string>
     <string name="INGRESAR">INGRESAR</string>
-    <string name="REGISTRARSE">Registra tu correo</string>
+    <string name="REGISTRARSE">Crear cuenta</string>
     <string name="repcontrasena">repetir contraseña</string>
     <string name="REGISTRAR">REGISTRAR</string>
     <string name="correo">email</string>
@@ -14,4 +14,15 @@
     <string name="CerrarSesion">Cerrar sesión</string>
     <string name="Principal">Principal</string>
     <string name="Registro">Registro</string>
+
+
+    <string name="facebook_app_id">199167630688546</string>
+    <string name="fb_login_protocol_scheme">fb199167630688546</string>
+    <string name="esculturas">Esculturas</string>
+    <string name="escultores">Escultores</string>
+    <string name="camara">Cámara</string>
+    <string name="mapa">Mapa</string>
+    <string name="Buscar">Buscar</string>
+    <string name="editarperfil">Editar perfil</string>
+
 </resources>
