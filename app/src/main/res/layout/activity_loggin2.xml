@@ -9,7 +9,7 @@
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/bRegistroGoogle"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/LogIn"
         android:layout_centerHorizontal="true"
@@ -17,21 +17,20 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/btnSignInFacebook"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bRegistroGoogle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
     <LinearLayout
         android:id="@+id/LogIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="20dp"
-        android:background="#34495e"
+        android:layout_marginTop="13dp"
         android:orientation="vertical">
 
 
@@ -41,7 +40,7 @@
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@color/green"
+            android:background="@color/whitesmoke"
             android:src="@mipmap/statuevenusicon" />
 
         <EditText
@@ -50,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@color/white"
+            android:background="@color/whitesmoke"
             android:drawableStart="@mipmap/email"
             android:gravity="center"
             android:hint="@string/usuario"
@@ -64,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@color/white"
+            android:background="@color/whitesmoke"
             android:drawableStart="@mipmap/password"
             android:gravity="center"
             android:hint="@string/contrasena"
@@ -74,28 +73,28 @@
 
         <Button
             android:id="@+id/bIngreso"
-            android:layout_width="120dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:background="@color/green"
+            android:layout_marginTop="10dp"
+            android:background="@color/orangered"
             android:drawableStart="@mipmap/upbutton"
             android:onClick="ClickIngresar"
             android:text="@string/INGRESAR"
-            android:textColor="@color/whitesmoke"
+            android:textColor="@color/beige"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/bRegistrarse"
-            android:layout_width="120dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_gravity="center"
             android:background="@color/whitesmoke"
             android:onClick="OnClickButton"
             android:text="@string/REGISTRARSE"
-            android:textColor="@color/green"
+            android:textColor="@color/orangered"
             android:textSize="12sp"
             android:textStyle="bold" />
 

@@ -17,54 +17,43 @@
         android:layout_marginTop="10dp"/>
 
     <TextView
-        android:id="@+id/Titulo"
-        android:layout_width="200dp"
+        android:id="@+id/perfilusuario"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:background="@color/green"
+        android:layout_margin="5dp"
         android:gravity="center"
-        android:text="@string/usuario"
-        android:textColor="@color/beige" />
-
-        <TextView
-            android:layout_below="@+id/Titulo"
-            android:layout_margin="5dp"
-            android:id="@+id/perfilusuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="#004d40"/>
+        android:textColor="@color/orangered"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <Button
-        android:onClick="ClickEditarPerfil"
         android:id="@+id/bEditarPerfil"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_below="@+id/perfilusuario"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
-        android:background="@color/green"
+        android:background="@color/orangered"
         android:gravity="center"
+        android:onClick="ClickEditarPerfil"
         android:text="@string/editarperfil"
-        android:textColor="@color/whitesmoke"
+        android:textColor="@color/beige"
         android:textStyle="bold" />
 
     <Button
-        android:onClick="ClickCerrarSesion"
         android:id="@+id/logout"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:background="@color/green"
+        android:background="@color/orangered"
         android:gravity="center"
+        android:onClick="ClickCerrarSesion"
         android:text="@string/CerrarSesion"
-        android:textColor="@color/whitesmoke"
+        android:textColor="@color/beige"
         android:textStyle="bold" />
 
 </RelativeLayout>

@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,7 +54,20 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.registromenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.Atrasitem){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void inicializar() {
 
@@ -96,7 +112,6 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
         contrasena = eContrasena.getText().toString();
         contrasena2 = eContrasena2.getText().toString();
 
-
         if(correo.isEmpty()){
             eCorreo.setError("¡Campo vacío!");
             error = true;
@@ -132,13 +147,13 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
                         Intent i = new Intent(RegistroActivity.this, LogginActivity.class);
                         startActivity(i);
                         finish();
-                    } else{
+        }else{
                         Toast.makeText(RegistroActivity.this, "Error al crear la cuenta", Toast.LENGTH_SHORT).show();
 
                         eCorreo.setText("");
                         eContrasena.setText("");
                         eContrasena2.setText("");
-                    }
+        }
                 }
             });
         }

@@ -4,61 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="corp.poopapps.afinal.RegistroActivity">
 
-    <EditText
-        android:id="@+id/eCorreo"
-        android:layout_width="300dp"
-        android:layout_height="32dp"
-        android:layout_below="@+id/imageView"
+    <LinearLayout
+        android:id="@+id/LogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:background="@color/beige"
-        android:drawableEnd="@mipmap/email"
-        android:gravity="center"
-        android:hint="@string/usuario"
-        android:inputType="textEmailAddress"
-        android:textStyle="bold" />
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="13dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/eContrasena"
-        android:layout_width="300dp"
-        android:layout_height="32dp"
-        android:layout_below="@+id/eCorreo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="@color/beige"
-        android:drawableEnd="@mipmap/password"
-        android:gravity="center"
-        android:hint="@string/contrasena"
-        android:inputType="textPassword"
-        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/eContrasena2"
-        android:layout_width="300dp"
-        android:layout_height="32dp"
-        android:layout_below="@+id/eContrasena"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="@color/beige"
-        android:drawableEnd="@mipmap/password"
-        android:gravity="center"
-        android:hint="@string/repcontrasena"
-        android:inputType="textPassword"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/whitesmoke"
+            android:src="@mipmap/statuevenusicon" />
 
-    <Button
-        android:id="@+id/bIngreso"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_below="@+id/eContrasena2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@color/green"
-        android:onClick="onClick"
-        android:text="@string/REGISTRAR"
-        android:textColor="@color/whitesmoke"
-        android:textStyle="bold" />
+        <EditText
+            android:id="@+id/eCorreo"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/whitesmoke"
+            android:drawableStart="@mipmap/email"
+            android:gravity="center"
+            android:hint="@string/usuario"
+            android:inputType="textEmailAddress"
+            android:padding="5dp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/eContrasena"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@color/whitesmoke"
+            android:drawableStart="@mipmap/password"
+            android:gravity="center"
+            android:hint="@string/contrasena"
+            android:inputType="textPassword"
+            android:padding="3dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/eContrasena2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@color/whitesmoke"
+            android:drawableStart="@mipmap/password"
+            android:gravity="center"
+            android:hint="@string/contrasena"
+            android:inputType="textPassword"
+            android:padding="3dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bIngreso"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/orangered"
+            android:drawableStart="@mipmap/upbutton"
+            android:onClick="onClick"
+            android:text="@string/REGISTRAR"
+            android:textColor="@color/beige"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>
