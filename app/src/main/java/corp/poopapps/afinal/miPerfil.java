@@ -81,14 +81,13 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if(firebaseUser != null){
-
                     if(firebaseUser.getPhotoUrl() != null){Glide.with(miPerfil.this).load(firebaseUser.getPhotoUrl()).into(imageView);}
                     tCorreo.setText(firebaseUser.getEmail());
                     Log.d("FirebaseUser", "getPhotoUrl: "+firebaseUser.getPhotoUrl());
                     Log.d("FirebaseUser", "Correo Usuario: "+firebaseUser.getEmail());
 
                 } else{
-
+                    Toast.makeText(miPerfil.this, "El usuario ha cerrado sesiòn", Toast.LENGTH_SHORT).show();
                     Log.d("FirebaseUser", "El usuario ha cerrado sesiòn");
                 }
             }

@@ -30,6 +30,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistroActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -39,6 +41,8 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,8 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
 
         inicializar();
 
+      //  FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -64,7 +70,7 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.Atrasitem){
-            finish();
+         finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -77,7 +83,6 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if(firebaseUser != null){
-                    goMainScreen();
                     Log.d("FirebaseUser", "Usuario Logeado: "+firebaseUser.getDisplayName());
                     Log.d("FirebaseUser", "Usuario Logeado: "+firebaseUser.getEmail());
                 } else{
@@ -143,21 +148,30 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+                        CrearUsuario();
+                        goMainScreen();
                         Toast.makeText(RegistroActivity.this, "Cuenta creada", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(RegistroActivity.this, LogginActivity.class);
-                        startActivity(i);
                         finish();
-        }else{
+                    }else{
                         Toast.makeText(RegistroActivity.this, "Error al crear la cuenta", Toast.LENGTH_SHORT).show();
 
                         eCorreo.setText("");
                         eContrasena.setText("");
                         eContrasena2.setText("");
-        }
+                    }
                 }
-            });
+                     });
         }
 
+    }
+
+    private void CrearUsuario() {
+
+        Usuarios usuarios = new Usuarios(databaseReference.push().getKey(),
+                eContrasena.getText().toString(),
+                eCorreo.getText().toString());
+
+        databaseReference.child("Usuarios").child(usuarios.getId()).setValue(usuarios);
     }
 
     private void goMainScreen() {

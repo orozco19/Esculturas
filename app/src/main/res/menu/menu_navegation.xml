@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/EsculturasItem"
+        android:icon="@mipmap/discobolusicon"
+        android:title="@string/esculturas"/>
+
+    <item
+        android:id="@+id/EscultoresItem"
+        android:icon="@mipmap/sculptoricon"
+        android:title="@string/escultores"/>
+
+    <item
+        android:id="@+id/CamaraItem"
+        android:icon="@mipmap/cameraicon"
+        android:title="@string/camara"/>
+
+    <item
+        android:id="@+id/MapaItem"
+        android:icon="@mipmap/mapicon"
+        android:title="@string/mapa"/>
+
+
+</menu>

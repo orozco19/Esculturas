@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "856576258579",
+    "firebase_url": "https://udestatuasfinal-master.firebaseio.com",
+    "project_id": "udestatuasfinal-master",
+    "storage_bucket": "udestatuasfinal-master.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856576258579:android:ed26e9cf3606c904",
+        "android_client_info": {
+          "package_name": "corp.poopapps.afinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856576258579-9rhh7r0pmm8rg6qnh4f5skup0eitfufd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "corp.poopapps.afinal",
+            "certificate_hash": "02b8b8258c706596d1bbe57c13cd07f59c3a8022"
+          }
+        },
+        {
+          "client_id": "856576258579-bnj3aatn5vb2hc97iifve03f54httq3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAtPorT_MHdrqQ0YbLL6V1_Nb9QJHGaOQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856576258579-bnj3aatn5vb2hc97iifve03f54httq3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

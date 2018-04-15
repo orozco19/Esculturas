@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -46,6 +47,7 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
     EditText eUsuario, eContrasena;
     Button bRegistro;
     String usuario, contrasena;
+    ProgressBar progressBar;
 
     private GoogleApiClient googleApiClient;
     private SignInButton bRegistroGoogle;
@@ -71,6 +73,9 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
         eUsuario = (EditText)findViewById(R.id.eUsuario);
         eContrasena = (EditText)findViewById(R.id.eContrasena);
 
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -89,6 +94,11 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
 
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+
+                bRegistroGoogle.setVisibility(View.INVISIBLE);
+                btnSignInFacebook.setVisibility(View.INVISIBLE);
+
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent, SIGN_IN);
             }
@@ -101,6 +111,11 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
             public void onSuccess(LoginResult loginResult) {
                 Log.d("Login con Facebook", "Login exitoso");
                 signInFacebook(loginResult.getAccessToken());
+
+                //progressBar.setVisibility(View.VISIBLE);
+
+                bRegistroGoogle.setVisibility(View.INVISIBLE);
+                btnSignInFacebook.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -167,6 +182,11 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
             firebaseAuthWithGoogle(result.getSignInAccount());
         }else {
             Toast.makeText(LogginActivity.this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
+
+            bRegistroGoogle.setVisibility(View.VISIBLE);
+            btnSignInFacebook.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+
         }}
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount signInAccount) {
@@ -219,7 +239,6 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
 
 
     public void OnClickButton(View view) {
-
         Intent i = new Intent(LogginActivity.this, RegistroActivity.class);
         startActivity(i);
     }
@@ -252,9 +271,7 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent i = new Intent(LogginActivity.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
+                   goMainScreen();
                     Toast.makeText(LogginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LogginActivity.this, "Error en inicio de sesión", Toast.LENGTH_SHORT).show();

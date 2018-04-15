@@ -15,6 +15,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
 
+    <ProgressBar
+        android:layout_below="@id/LogIn"
+        android:id="@+id/progress_bar"
+        android:layout_marginTop="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        />
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/btnSignInFacebook"
         android:layout_width="300dp"

@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private BottomNavigationView bottomNavigationView;
     private TextView Textview;
 
-    private GoogleApiClient googleApiClient;
-
     String usuario, contrasena;
 
     @Override
@@ -59,21 +57,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
         inicializar();
     }
 
-    public void cerrarSesion(){
-        firebaseAuth.signOut();
-    }
 
     private void inicializar() {
         firebaseAuth = FirebaseAuth.getInstance();
@@ -119,22 +105,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void googleLogOut() {
-        if(Auth.GoogleSignInApi != null){
-            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-                @Override
-                public void onResult(@NonNull Status status) {
-                    if (status.isSuccess()){
-                        Toast.makeText(MainActivity.this, "Sesión de Google finalizada", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-        if(LoginManager.getInstance() != null){
-            LoginManager.getInstance().logOut();
-        }
     }
 
     @Override
