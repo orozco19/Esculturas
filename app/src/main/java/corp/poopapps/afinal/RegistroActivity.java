@@ -167,11 +167,11 @@ public class RegistroActivity extends AppCompatActivity implements GoogleApiClie
 
     private void CrearUsuario() {
 
-        Usuarios usuarios = new Usuarios(databaseReference.push().getKey(),
+        Usuarios usuarios = new Usuarios(firebaseAuth.getUid(),
                 eContrasena.getText().toString(),
                 eCorreo.getText().toString());
 
-        databaseReference.child("Usuarios").child(usuarios.getId()).setValue(usuarios);
+        databaseReference.child("Usuarios").child(firebaseAuth.getUid()).setValue(usuarios);
     }
 
     private void goMainScreen() {

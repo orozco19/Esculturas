@@ -2,17 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="corp.poopapps.afinal">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/EsculturasUdea"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -22,18 +24,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:label="@string/Principal"/>
-        <activity android:name=".LogginActivity"
-            android:label="@string/Login"/>
-        <activity android:name=".RegistroActivity"
-            android:label="@string/Registro"/>
-        <activity android:name=".miPerfil"
-            android:label="@string/miPerfil"/>
-        <activity android:name=".PruebaActivity"
-            android:label="Prueba">
-
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/Principal" />
+        <activity
+            android:name=".LogginActivity"
+            android:label="@string/Login" />
+        <activity
+            android:name=".RegistroActivity"
+            android:label="@string/Registro" />
+        <activity
+            android:name=".miPerfil"
+            android:label="@string/miPerfil" />
+        <activity
+            android:name=".PruebaActivity"
+            android:label="Prueba"></activity>
+        <activity android:name=".EditarPerfilActivity"></activity>
     </application>
 
 </manifest>

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="@string/VOLVER"
-        android:icon="@mipmap/back"
+        android:icon="@mipmap/cancelbutton"
         android:id="@+id/Atrasitem"
         app:showAsAction="ifRoom"/>
 </menu>

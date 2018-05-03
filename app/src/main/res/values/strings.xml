@@ -26,4 +26,13 @@
     <string name="editarperfil">Editar perfil</string>
     <string name="VOLVER">VOLVER</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nombre">nombre</string>
+    <string name="edad">edad</string>
+    <string name="masculino">masculino</string>
+    <string name="femenino">femenino</string>
+    <string name="guardar">guardar</string>
+    <string name="EsculturasUdea">EsculturasUdeA</string>
+
 </resources>

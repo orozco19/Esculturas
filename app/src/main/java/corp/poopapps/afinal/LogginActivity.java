@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +40,9 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -45,8 +50,8 @@ import java.security.NoSuchAlgorithmException;
 public class LogginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     EditText eUsuario, eContrasena;
-    Button bRegistro;
-    String usuario, contrasena;
+    Button bRegistro, bCrearcuenta;
+    String usuario, contrasena,name,email;
     ProgressBar progressBar;
 
     private GoogleApiClient googleApiClient;
@@ -56,6 +61,8 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+
+    private DatabaseReference databaseReference;
 
     public static final int SIGN_IN=123;
 
@@ -72,6 +79,9 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
         bRegistro = (Button)findViewById(R.id.bRegistrarse);
         eUsuario = (EditText)findViewById(R.id.eUsuario);
         eContrasena = (EditText)findViewById(R.id.eContrasena);
+        bCrearcuenta = (Button)findViewById(R.id.bRegistrarse);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
@@ -112,7 +122,7 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
                 Log.d("Login con Facebook", "Login exitoso");
                 signInFacebook(loginResult.getAccessToken());
 
-                //progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
 
                 bRegistroGoogle.setVisibility(View.INVISIBLE);
                 btnSignInFacebook.setVisibility(View.INVISIBLE);
@@ -130,8 +140,26 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
             }
         });
 
-        inicializar();
         getHashes();
+
+        inicializar();
+
+    }
+
+    private void inicializar() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if(firebaseUser != null){
+                    goMainScreen();
+                    Log.d("FirebaseUser", "Correo Usuario: "+firebaseUser.getEmail());
+                } else{
+                    Log.d("FirebaseUser", "El usuario ha cerrado sesiòn");
+                }
+            }
+        };
     }
 
     private void getHashes(){
@@ -158,9 +186,14 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    goMainScreen();
+                    CrearUsuario(); //CREA EL USUARIO EN LA BASE DE DATOS
+                    goMainScreen(); //INICIA LA PANTALLA PRINCIPAL
                 }else {
-                        Toast.makeText(LogginActivity.this, "Autenticacion con Facebook no exitosa", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LogginActivity.this, "Autenticacion con Facebook no exitosa", Toast.LENGTH_LONG).show();
+
+                    bRegistroGoogle.setVisibility(View.VISIBLE);
+                    btnSignInFacebook.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });
@@ -179,7 +212,9 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
 
     private void handleSignInResult(GoogleSignInResult result) {
         if(result.isSuccess()){
+
             firebaseAuthWithGoogle(result.getSignInAccount());
+
         }else {
             Toast.makeText(LogginActivity.this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show();
 
@@ -194,8 +229,18 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    goMainScreen();
+                    CrearUsuario();
+                }
+
                 if (!task.isSuccessful()){
                     Toast.makeText(LogginActivity.this, "No se pudo autentificar con Firebase", Toast.LENGTH_SHORT).show();
+
+                    bRegistroGoogle.setVisibility(View.VISIBLE);
+                    btnSignInFacebook.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -205,22 +250,6 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
         Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    private void inicializar() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if(firebaseUser != null){
-                    goMainScreen();
-                    Log.d("FirebaseUser", "Correo Usuario: "+firebaseUser.getEmail());
-                } else{
-                    Log.d("FirebaseUser", "El usuario ha cerrado sesiòn");
-                }
-            }
-        };
     }
 
     @Override
@@ -284,4 +313,15 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    private void CrearUsuario() {
+
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            Usuarios usuarios = new Usuarios(firebaseUser.getUid(),firebaseUser.getDisplayName(),firebaseUser.getEmail());
+            databaseReference.child("Usuarios").child(firebaseUser.getUid()).setValue(usuarios);
+        }
+    }
+
+
 }

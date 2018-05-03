@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@mipmap/avatar"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
@@ -22,17 +22,44 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
+        android:layout_marginTop="2dp"
         android:gravity="center"
-        android:textColor="@color/orangered"
-        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="NO NAME"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/perfilusuario2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perfilusuario"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="NO EMAIL"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/perfilusuario3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/perfilusuario2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="NO ID"
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/bEditarPerfil"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/perfilusuario"
+        android:layout_below="@+id/perfilusuario3"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
         android:background="@color/orangered"

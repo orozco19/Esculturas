@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="13dp"
         android:orientation="vertical">
 
 
@@ -39,8 +39,7 @@
             android:hint="@string/usuario"
             android:inputType="textEmailAddress"
             android:padding="5dp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/eContrasena"
@@ -75,8 +74,8 @@
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:background="@color/orangered"
             android:drawableStart="@mipmap/upbutton"
             android:onClick="onClick"

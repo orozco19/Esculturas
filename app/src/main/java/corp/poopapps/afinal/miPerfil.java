@@ -1,5 +1,8 @@
 package corp.poopapps.afinal;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.app.Fragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +38,7 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
 
     String usuario, contrasena;
 
-    TextView tCorreo;
+    TextView tNombre, tCorreo, tID;
     ImageView imageView;
 
     @Override
@@ -43,9 +46,11 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mi_perfil);
 
-        tCorreo = (TextView)findViewById(R.id.perfilusuario);
-        imageView = (ImageView)findViewById(R.id.imageView);
+        tCorreo = (TextView)findViewById(R.id.perfilusuario2);
+        tNombre = (TextView)findViewById(R.id.perfilusuario);
+        tID = (TextView)findViewById(R.id.perfilusuario3);
 
+        imageView = (ImageView)findViewById(R.id.imageView);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -82,13 +87,18 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if(firebaseUser != null){
                     if(firebaseUser.getPhotoUrl() != null){Glide.with(miPerfil.this).load(firebaseUser.getPhotoUrl()).into(imageView);}
+                    tNombre.setText(firebaseUser.getDisplayName());
                     tCorreo.setText(firebaseUser.getEmail());
+                    tID.setText(firebaseUser.getUid());
+
+
                     Log.d("FirebaseUser", "getPhotoUrl: "+firebaseUser.getPhotoUrl());
                     Log.d("FirebaseUser", "Correo Usuario: "+firebaseUser.getEmail());
+                    Log.d("FirebaseUser", "UID: "+firebaseUser.getUid());
 
                 } else{
-                    Toast.makeText(miPerfil.this, "El usuario ha cerrado sesiòn", Toast.LENGTH_SHORT).show();
                     Log.d("FirebaseUser", "El usuario ha cerrado sesiòn");
+                    goLoginScreen();
                 }
             }
         };
@@ -128,7 +138,12 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
     }
 
     public void ClickEditarPerfil(View view) {
-        Toast.makeText(miPerfil.this, "EDITAR PERFIL", Toast.LENGTH_SHORT).show();
+
+       // Toast.makeText(miPerfil.this, "EDITAR PERFIL", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(miPerfil.this, EditarPerfilActivity.class);
+        startActivity(intent);
+
     }
 
     public void ClickCerrarSesion(View view) {
@@ -137,5 +152,11 @@ public class miPerfil extends AppCompatActivity implements GoogleApiClient.OnCon
             startActivity(i);
             firebaseAuth.signOut();
             googleLogOut();
+    }
+
+    private void goLoginScreen() {
+        Intent intent = new Intent(this,LogginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

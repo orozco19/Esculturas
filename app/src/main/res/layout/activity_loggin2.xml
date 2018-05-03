@@ -16,11 +16,12 @@
         android:layout_marginTop="50dp" />
 
     <ProgressBar
+        android:progress="@integer/google_play_services_version"
         android:layout_below="@id/LogIn"
         android:id="@+id/progress_bar"
         android:layout_marginTop="70dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_centerHorizontal="true"
         />
 
@@ -98,14 +99,14 @@
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/whitesmoke"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
             android:onClick="OnClickButton"
             android:text="@string/REGISTRARSE"
-            android:textColor="@color/orangered"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="italic|bold" />
 
     </LinearLayout>
 
