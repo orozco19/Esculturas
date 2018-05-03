@@ -105,7 +105,6 @@ public class LogginActivity extends AppCompatActivity implements GoogleApiClient
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
-
                 bRegistroGoogle.setVisibility(View.INVISIBLE);
                 btnSignInFacebook.setVisibility(View.INVISIBLE);
 
