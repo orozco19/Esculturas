@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class EditarPerfilActivity extends AppCompatActivity {
 
     private String nombre, sexo;
-    private int edad;
+    private int edad=0;
     private EditText eNombre, eEdad;
     private RadioButton femenino, masculino;
     private Button bGuardar;
@@ -86,7 +86,9 @@ public class EditarPerfilActivity extends AppCompatActivity {
     public void ClickGuardar(View view) {
 
         nombre = eNombre.getText().toString();
-     //   edad = Integer.parseInt(eEdad.getText().toString());
+        if(!eEdad.getText().toString().isEmpty()){
+            edad = Integer.parseInt(eEdad.getText().toString());
+        }
 
         boolean error=false;
 
@@ -99,11 +101,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
             error=true;
             eNombre.setError("¡Campo vacío!");
         }
-
-        /*if(eEdad.getText().toString().isEmpty()){
-            error=true;
-            eEdad.setError("¡Campo vacío!");
-        }*/
 
         if(femenino.isChecked()){
             sexo = femenino.getText().toString();

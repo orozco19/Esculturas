@@ -1,6 +1,9 @@
 package corp.poopapps.afinal;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -24,11 +29,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private BottomNavigationView bottomNavigationView;
 
     String usuario, contrasena;
+    ImageView image;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        image = (ImageView)findViewById(R.id.imageView);
+        image.setVisibility(View.INVISIBLE);
 
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigationView);
 
@@ -36,14 +47,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+
                 if(item.getItemId() == R.id.EsculturasItem) {
                     setTitle(R.string.esculturas);
-                }else if(item.getItemId() == R.id.EscultoresItem) {
+                    Intent i = new Intent(MainActivity.this, listaEscultura.class);
+                    startActivity(i);
+                   /* EsculturasFragment esculturasFragment = new EsculturasFragment();
+                    ft.replace(R.id.contenedor, esculturasFragment).commit();*/
+                }
+                else if(item.getItemId() == R.id.EscultoresItem) {
                     setTitle(R.string.escultores);
-                }else if(item.getItemId() == R.id.CamaraItem) {
+                    Intent i = new Intent(MainActivity.this, listaEscultoresActivity.class);
+                    startActivity(i);
+                }
+                else if(item.getItemId() == R.id.CamaraItem) {
                     setTitle(R.string.camara);
-                }else if(item.getItemId() == R.id.MapaItem) {
+                }
+                else if(item.getItemId() == R.id.MapaItem) {
                     setTitle(R.string.mapa);
+                    image.setVisibility(View.VISIBLE);
+
+                } if(item.getItemId() != R.id.MapaItem){
+
+                    image.setVisibility(View.INVISIBLE);
                 }
                 return true ;
             }

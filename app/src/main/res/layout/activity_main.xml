@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:weightSum="2"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:design="http://schemas.android.com/apk/res-auto"
     tools:context="corp.poopapps.afinal.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/EsculturasList"
-        android:scrollbars="vertical"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/udeamap"/>
 
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_height="120dp"
         android:background="@color/beige"
-        design:menu="@menu/menu_navegation" />
+        design:menu="@menu/menu_navegation"
+        android:layout_weight="1"/>
 
 
-</android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>
