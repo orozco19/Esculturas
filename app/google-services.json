@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "856576258579-6c0fpk7b5ug864bjo19b121jv36entpv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "corp.poopapps.afinal",
+            "certificate_hash": "36dd78b203252d408449acc1a503dbde09a6658d"
+          }
+        },
+        {
           "client_id": "856576258579-9rhh7r0pmm8rg6qnh4f5skup0eitfufd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

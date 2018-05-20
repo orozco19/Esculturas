@@ -35,5 +35,7 @@
     <string name="guardar">guardar</string>
     <string name="EsculturasUdea">EsculturasUdeA</string>
     <string name="title_activity_maps">Map</string>
+    <string name="Ar">Realidad Aumentada</string>
+    <string name="title_activity_ubicacion_mapa">Map</string>
 
 </resources>

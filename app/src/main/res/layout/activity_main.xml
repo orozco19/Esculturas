@@ -8,12 +8,20 @@
     xmlns:design="http://schemas.android.com/apk/res-auto"
     tools:context="corp.poopapps.afinal.MainActivity">
 
-    <ImageView
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame"
+        android:background="@color/beige"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <!--<ImageView
         android:id="@+id/imageView"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/udeamap"/>
+        android:src="@drawable/udeamap"/>-->
 
 
     <android.support.design.widget.BottomNavigationView

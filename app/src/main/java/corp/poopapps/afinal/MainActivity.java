@@ -1,22 +1,20 @@
 package corp.poopapps.afinal;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.media.Image;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private BottomNavigationView bottomNavigationView;
+    private FrameLayout frameLayout;
+    FragmentManager fm;
+    FragmentTransaction ft;
 
     String usuario, contrasena;
     ImageView image;
@@ -38,48 +39,49 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        image = (ImageView)findViewById(R.id.imageView);
-        image.setVisibility(View.INVISIBLE);
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
 
-        bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigationView);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-
-                if(item.getItemId() == R.id.EsculturasItem) {
-                    setTitle(R.string.esculturas);
-                    Intent i = new Intent(MainActivity.this, listaEscultura.class);
-                    startActivity(i);
-                   /* EsculturasFragment esculturasFragment = new EsculturasFragment();
-                    ft.replace(R.id.contenedor, esculturasFragment).commit();*/
-                }
-                else if(item.getItemId() == R.id.EscultoresItem) {
-                    setTitle(R.string.escultores);
-                    Intent i = new Intent(MainActivity.this, listaEscultoresActivity.class);
-                    startActivity(i);
-                }
-                else if(item.getItemId() == R.id.CamaraItem) {
-                    setTitle(R.string.camara);
-                }
-                else if(item.getItemId() == R.id.MapaItem) {
-                    setTitle(R.string.mapa);
-                    image.setVisibility(View.VISIBLE);
-
-                } if(item.getItemId() != R.id.MapaItem){
-
-                    image.setVisibility(View.INVISIBLE);
-                }
-                return true ;
-            }
-
-        });
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        EsculturasFragment esculturasFragment = new EsculturasFragment();
+        ft.add(R.id.frame, esculturasFragment).commit();       //Primer listar a cargar
+        frameLayout = findViewById(R.id.frame);
 
         inicializar();
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            ft = fm.beginTransaction();
+            switch (item.getItemId()) {
+                case R.id.EsculturasItem:
+                    setTitle(R.string.esculturas);
+                    EsculturasFragment esculturasFragment = new EsculturasFragment();
+                    ft.replace(R.id.frame, esculturasFragment).commit();
+                    return true;
+                case R.id.EscultoresItem:
+                    setTitle(R.string.escultores);
+                    EscultoresFragment escultoresFragment = new EscultoresFragment();
+                    ft.replace(R.id.frame, escultoresFragment).commit();
+                    return true;
+                case R.id.CamaraItem:
+                    setTitle(R.string.Ar);
+                    ARFragment arFragment = new ARFragment();
+                    ft.replace(R.id.frame, arFragment).commit();
+                    return true;
+                case R.id.MapaItem:
+                    setTitle(R.string.mapa);
+                    MapaEsculturasFragment mapaEsculturasFragment = new MapaEsculturasFragment();
+                    ft.replace(R.id.frame, mapaEsculturasFragment ).commit();
+                    return true;
+            }
+            return false;
+        }
+    };
 
 
     private void inicializar() {
