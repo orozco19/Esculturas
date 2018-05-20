@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,8 @@ public class MapaEsculturasFragment extends Fragment implements OnMapReadyCallba
             ft.replace(R.id.map, mapFragment).commit();
 
         }
+        mapFragment.getMapAsync(this);
+        Log.d("entra", "onCreate?");
         return v;
 
     }
@@ -70,13 +73,15 @@ public class MapaEsculturasFragment extends Fragment implements OnMapReadyCallba
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
 
         LatLng UdeaPrincipal = new LatLng(6.266944, -75.568980 );
         mMap.addMarker(new MarkerOptions().position(UdeaPrincipal).title("UdeA"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(UdeaPrincipal));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(UdeaPrincipal));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(6.266944, -75.568980),17.0f));
     }
 }
